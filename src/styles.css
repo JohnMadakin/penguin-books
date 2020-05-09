@@ -1,0 +1,49 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+/* html {
+  font-size: 62.5%;
+} */
+
+html{
+  font-family: 'Dosis', sans-serif;
+}
+
+/* .loader {
+  border-top-color: var(--primary-theme-color);
+  -webkit-animation: spinner 1.5s linear infinite;
+  animation: spinner 1.5s linear infinite;
+} */
+
+@-webkit-keyframes spinner {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Small (sm) */
+@media (min-width: 640px) { 
+
+}
+
+/* Medium (md) */
+@media (min-width: 768px) { 
+  
+}
+
+/* Large (lg) */
+@media (min-width: 1024px) { 
+  
+ }
+
+/* Extra Large (xl) */
+@media (min-width: 1280px) { 
+  
+ }
