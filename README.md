@@ -1,2 +1,2 @@
 # penguin-books
-an ebooks library
+A modern mini-library webapp to today's library 
