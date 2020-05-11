@@ -13,6 +13,7 @@ import Button from './Button';
 
 import images from '../assets/images'
 import '../assets/styles/nav.css';
+import toastNotify from '../utilities/toaster';
 
 export default function Nav() {
   const sideButtons = {
@@ -39,6 +40,7 @@ export default function Nav() {
   }
 
   function logout(){
+    toastNotify('info', 'Logged Out', 'User successfully Logged out', 'topRight');
     localStorageApI.remove('penguinAppToken');
     localStorageApI.remove('userDetails');
     dispatch({ type: 'logout', payload: { isAuthenticated: false } });
