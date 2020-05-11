@@ -3,10 +3,10 @@ import { hot } from 'react-hot-loader/root';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Homepage from './pages/Homepage';
-import Dashboard from './pages/Dashboard';
+
 import Layout from './layout/Layout';
 import LoginService from './services/login.service';
-import routes from './routes/index'
+import routes from './routes/routes'
 import { store } from './store';
 // class App extends React.Component {
   function App(){
@@ -26,7 +26,7 @@ import { store } from './store';
             render={(props) => user.isAuthenticated ? <Redirect
               to={{
                 pathname: "/dashboard",
-                state: { from: props.location }
+                // state: { from: props.location }
               }}
             />: <Homepage {...props} />}
 
@@ -41,7 +41,7 @@ import { store } from './store';
                   render={(props) => user.isAuthenticated ? <Layout><route.component {...props} /></Layout> : <Redirect
                     to={{
                       pathname: "/",
-                      state: { from: props.location }
+                      // state: { from: props.location }
                     }}
                   />}
                 >
