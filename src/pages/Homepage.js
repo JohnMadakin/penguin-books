@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
-import Nav from '../components/Nav';
 import Layout from '../layout/Layout';
 import '../assets/styles/homepage.css';
 import images from '../assets/images';
 
 export default function Homepage() {
 
-  // const [count, setCount] = useState(0);
-  const sideButtons = {
-    text: 'signup',
-    className: 'bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-orange-400 rounded shadow',
-  }
-
   return (
     <Layout>
-      <Nav sideButtons={sideButtons} />
-
-
-
       <div className="relative bg-white overflow-hidden">
         <div className="max-w-screen-xl mx-auto ">
           <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
@@ -38,7 +27,7 @@ export default function Homepage() {
                 </p>
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md shadow">
-                    <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white hero-button focus:outline-none focus:shadow-outline transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                    <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium  text-white hero-button focus:outline-none focus:shadow-outline transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                       Get started
                   </a>
                   </div>
