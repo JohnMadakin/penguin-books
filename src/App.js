@@ -1,33 +1,62 @@
-import React from "react";
+import React, { useContext } from "react";
 import { hot } from 'react-hot-loader/root';
-import Homepage  from './pages/Homepage';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+
+import Homepage from './pages/Homepage';
+import Dashboard from './pages/Dashboard';
 import Layout from './layout/Layout';
-import Book from './pages/Book';
-import ListAuthors from './pages/ListAuthors';
-
+import LoginService from './services/login.service';
 import routes from './routes/index'
-
+import { store } from './store';
 // class App extends React.Component {
   function App(){
-  // render() {
-    // const { name } = this.props;
+
+    const user = useContext(store);
+    const checkUser = LoginService.CheckAuthenticationStatus();
+
+    if(checkUser.isAuthenticated){
+      user.isAuthenticated = checkUser.isAuthenticated;
+    }
+
     return (
       <BrowserRouter>
         <Switch>
           <Route 
             exact path='/'
-            render ={props => <Homepage {...props} />}
+            render={(props) => user.isAuthenticated ? <Redirect
+              to={{
+                pathname: "/dashboard",
+                state: { from: props.location }
+              }}
+            />: <Homepage {...props} />}
 
           />
 
-          {routes.map(route => (
-          <Route
-            path = {route.path}
-            key = {route.name}
-              render={props => <Layout><route.component {...props} /></Layout>}
-            />
-          ))}
+          {routes.map(route => {
+            if(route.protected){
+              return (
+                <Route 
+                path={route.path}
+                key={route.name}
+                  render={(props) => user.isAuthenticated ? <Layout><route.component {...props} /></Layout> : <Redirect
+                    to={{
+                      pathname: "/",
+                      state: { from: props.location }
+                    }}
+                  />}
+                >
+                </Route>
+              );
+            }else{
+             return(
+               <Route
+                 path={route.path}
+                 key={route.name}
+                 render={props => <Layout><route.component {...props} /></Layout>}
+               /> 
+               );
+            }
+        } )}
         </Switch>
       </BrowserRouter>
     

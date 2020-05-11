@@ -1,0 +1,14 @@
+.text-primary-color{
+  /* color: rgb(242, 163, 110); */
+  color: var(--primary-theme-color);
+}
+
+.hero-button{
+  /* background-color: rgb(242, 163, 110);; */
+  background-color: var(--primary-theme-color);
+}
+
+.hero-button:hover{
+  background-color: rgba(242, 163, 110, 0.9);;
+}
+
