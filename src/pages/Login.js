@@ -57,7 +57,7 @@ export default function Login(props) {
     }
     if(results.status == 'error'){
       setLoading(false);
-      const errorMessage = results.errorPayload.message;
+      const errorMessage = results.errorPayload ? results.errorPayload.message : 'Server error occered';
       if (!errorMessage) {
         Object.values(results.errorPayload).map(invalidInput => {
           toastNotify('error', 'Error', invalidInput.join(""), 'topRight');

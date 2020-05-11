@@ -14,7 +14,7 @@ export default {
       }
 
     } catch (error) {
-      return { status: 'error', errorPayload: error.response.data };
+      return { status: 'error', errorPayload: error.response ? error.response.data : null };
     }
   },
 
