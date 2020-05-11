@@ -7,29 +7,43 @@ import {
 import { store } from '../store';
 import auth  from '../services/login.service';
 import decodeJWT from '../utilities/decodeJWT';
+
 import Button from '../components/Button';
 import Input from '../components/Input';
+import Spinner from '../components/SpinnerBox';
+
 import useAdminLogin from '../customhooks/useAdminLogin';
 import localStorageAPI from '../utilities/localstorage';
 
 
 import '../assets/styles/modal.css';
 import '../assets/styles/login.css';
-import iziToast from 'izitoast';
+import toastNotify from '../utilities/toaster';
+
+// const toastNotify = (type, title, message, position) => {
+//   return iziToast[type]({
+//     title,
+//     message,
+//     position
+//   });
+// }
 
 export default function Login(props) {
   let history = useHistory();
   // let location = useLocation();
   const { handleCloseModal } = props;
-  const [loading, setLoading] = useState(false);
+  const [isloading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+
   async function login(){
+    setLoading(true);
     const base_url = 'http://localhost:8088' || 'https://ralph-waldo-library-api.herokuapp.com';
     const results = await auth.LoginService(email, password, base_url);
-
+    setLoading(false);
     if (results.status == 'success' && results.token) {
+      toastNotify('info', 'Login', 'Login successful', 'topRight');
       setLoading(false);
       const userPayload = decodeJWT(results.token);
       setIsAuthenticated(true);
@@ -42,21 +56,14 @@ export default function Login(props) {
       history.push('/dashboard');
     }
     if(results.status == 'error'){
+      setLoading(false);
       const errorMessage = results.errorPayload.message;
       if (!errorMessage) {
         Object.values(results.errorPayload).map(invalidInput => {
-            iziToast.error({
-              title: 'Error',
-              message: invalidInput.join(""),
-              position: 'topRight',
-            })
+          toastNotify('error', 'Error', invalidInput.join(""), 'topRight');
           })
         }else{
-          iziToast.error({
-            title: 'Error',
-            message: errorMessage,
-            position: 'topRight',
-          })
+          toastNotify('error', 'Error', errorMessage, 'topRight' );
         }
         setHasError(true);
     }
@@ -71,7 +78,8 @@ export default function Login(props) {
           <h1 className="login-text text-xl">ADMIN LOGIN</h1>
           <Input type={"text"} placeholder={"Email"} className={"login-form-username mt-3"} handleChange={(e) => handleEmailChange(e)} />
           <Input type={"password"} placeholder={"Password"} className={"login-form-password"} handleChange={(e) => handlePasswordChange(e)} />
-          <div className="login-button-container"><Button textName={"sign in"} className={"login-button"} />
+        <div className="login-button-container">
+          { !isloading ? <Button textName={"sign in"} className={"login-button"} /> : <Spinner customClass={'login-spinner'} height={'0.8em'} width={'1.8em'}/> }
             <span className="login-password-reset">password reset</span>
           </div>
         </form>
