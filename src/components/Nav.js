@@ -15,6 +15,7 @@ import images from '../assets/images'
 import '../assets/styles/nav.css';
 import toastNotify from '../utilities/toaster';
 
+import x from '../assets/images/penguin_logo2.jpg'
 export default function Nav() {
   const sideButtons = {
     text: 'Create New User',
@@ -54,7 +55,7 @@ export default function Nav() {
     <div className="navbar lg:p-6 shadow">
       <nav className="flex flex-row justify-between lg:px-12">
         <div className="flex flex-row">
-          <span className="lg:mr-12"><Link to="/"><img alt="logo" src={images.logo} className="h-8 w-auto sm:h-10" /></Link></span>
+          <span className="lg:mr-12"><Link to="/"><img alt="logo" src={'/static/media/penguin_logo2.jpg'} className="h-8 w-auto sm:h-10" /></Link></span>
           <ul className="flex flex-row">
             <li className="navbar-links py-2 px-4">
               <Link to="/authors">Search Authors</Link>

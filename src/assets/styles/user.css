@@ -1,0 +1,44 @@
+.user-list-row{
+  cursor: pointer;
+  border-bottom: solid 2px #e2e8f0;
+  /* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); */
+
+}
+.user-list-row::after{
+  content: '\02795';
+  margin: auto auto;
+
+}
+.user-list-row:hover, .active{
+    background-color: rgb(238, 235, 235);
+
+}
+.active::after{
+  content: "\2796";
+  margin: auto auto;
+}
+
+.user-list-address-content{
+  position: absolute;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  /* transform-origin: center bottom; */
+  transform: scaleY(0);
+  transition: transform,  0.5s ease-in-out;
+  
+}
+
+.address-content-visible{
+  position: relative;
+  transform-origin: center top;
+  transform: scaleY(1);
+}
+
+.remove{
+  /* position: absolute; */
+  transform-origin: center top;
+  transform: scaleY(0);
+  right: 0;
+  left: 0;
+
+}

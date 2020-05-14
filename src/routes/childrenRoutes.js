@@ -1,8 +1,7 @@
-import ListAuthors from '../pages/ListAuthors';
-import Dashboard from '../pages/Dashboard';
 import Users from '../pages/Users';
 import Settings from '../pages/Settings';
 import Book from '../pages/Book';
+import Items from '../pages/Items';
 
 const routes = [
   {
@@ -21,6 +20,12 @@ const routes = [
     component: Book,
     name: 'books',
   },
+  {
+    path: '/items',
+    component: Items,
+    name: 'items',
+  },
+
 ];
 
 export default routes;

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { hot } from 'react-hot-loader/root';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import Homepage from './pages/Homepage';
 
@@ -8,7 +8,7 @@ import Layout from './layout/Layout';
 import LoginService from './services/login.service';
 import routes from './routes/routes'
 import { store } from './store';
-// class App extends React.Component {
+
   function App(){
 
     const user = useContext(store);
@@ -17,6 +17,7 @@ import { store } from './store';
     if(checkUser.isAuthenticated){
       user.isAuthenticated = checkUser.isAuthenticated;
     }
+
 
     return (
       <BrowserRouter>

@@ -21,7 +21,7 @@ const routes = [
     path: '/dashboard',
     component: Dashboard,
     name: 'Dashboard',
-    exact: false,
+    exact: true,
     protected: true,
   },
   // {

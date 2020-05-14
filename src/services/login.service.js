@@ -2,7 +2,7 @@ import axios from 'axios';
 import localStorageAPI from '../utilities/localstorage';
 import decodeToken from '../utilities/decodeJWT';
 export default {
-  LoginService: async function login(email, password, base_url) {
+  loginService: async function login(email, password, base_url) {
     try {
       const url = `${base_url}/api/v1/login`;
       const results = await axios.post(url, {

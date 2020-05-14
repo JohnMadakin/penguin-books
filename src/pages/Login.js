@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {
   useHistory,
-  // useLocation
 } from "react-router-dom";
 
 import { store } from '../store';
@@ -20,14 +19,6 @@ import '../assets/styles/modal.css';
 import '../assets/styles/login.css';
 import toastNotify from '../utilities/toaster';
 
-// const toastNotify = (type, title, message, position) => {
-//   return iziToast[type]({
-//     title,
-//     message,
-//     position
-//   });
-// }
-
 export default function Login(props) {
   let history = useHistory();
   // let location = useLocation();
@@ -40,7 +31,7 @@ export default function Login(props) {
   async function login(){
     setLoading(true);
     const base_url = 'http://localhost:8088' || 'https://ralph-waldo-library-api.herokuapp.com';
-    const results = await auth.LoginService(email, password, base_url);
+    const results = await auth.loginService(email, password, base_url);
     setLoading(false);
     if (results.status == 'success' && results.token) {
       toastNotify('info', 'Login', 'Login successful', 'topRight');
