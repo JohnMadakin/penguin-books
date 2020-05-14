@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from 'react';
 
 const initialState = {
   isAuthenticated: false,
+  loadUsers: false,
   userDetails: {},
 };
 const store = createContext(initialState);
@@ -20,6 +21,12 @@ function reducer(state, action){
         isAuthenticated: action.payload.isAuthenticated,
         userDetails: {},
       };
+    case 'load_users':
+      // console.log('=++++++++was I triggered++++++++++')
+      return {
+        loadUsers: action.payload.loadUsers,
+      };
+
     default:
       throw new Error(`Unhandled action type: ${action.type}`)
   };
@@ -32,6 +39,7 @@ const StateProvider = ({ children }) => {
   return <Provider value={{ 
     isAuthenticated: state.isAuthenticated,
     userDetails: state.userDetails,
+    loadUsers: state.loadUsers,
     dispatch }}>{children}</Provider>;
 };
 

@@ -45,6 +45,9 @@ const config = {
         use: [
           {
             loader: 'file-loader',
+            options: {
+              name: 'static/media/[name].[ext]',
+            },
           },
         ],
       },
@@ -65,6 +68,7 @@ const config = {
     historyApiFallback: true,
     hot: true
   },
+  devtool: 'source-map',
   plugins: [
     require('tailwindcss'),
     require('autoprefixer'),

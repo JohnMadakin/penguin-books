@@ -1,3 +1,7 @@
 .dashboard-container{
   background-color: rgba(246,246,246, 1);
 }
+
+.dashboard-routes-container{
+  background-color: transparent;
+}

@@ -42,31 +42,3 @@ rect {
   stroke-dasharray: 778;
   stroke-dashoffset: 778;
 }
-
-
-
-
-/* {
-    z-index:0;
-    transform:scale(1);
-    .modal-background {
-      background:rgba(0,0,0,.7);
-      .modal {
-      }
-    }
-    + .content {
-      z-index:1;
-      animation:blowUpContent .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-    }
-    &.out {
-      .modal-background {
-        .modal {
-          animation: blowUpModalTwo .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-        }
-      }
-      + .content {
-        animation: blowUpContentTwo .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-      }
-    }
-  } */
-
