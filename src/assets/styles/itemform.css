@@ -42,12 +42,14 @@
   min-width: 13rem;
   border: 1px solid #ddd;
   z-index: 1;
+  /* overflow-y: scroll; */
+  /* height: 15rem; */
 }
 
 /* Links inside the dropdown */
 .item-form-dropdown-content-items {
   color: black;
-  padding: 16px 16px;
+  padding: 1rem 1rem;
   text-decoration: none;
   display: block;
 }
@@ -63,5 +65,41 @@
 }
 
 .dropdown-add-author{
+  position: relative;
+}
+.dropdown-add-author-input{
+  position: relative;
+  background-color: #f1f1f1;
+}
 
+.dropdown-add-author-button {
+  position: absolute;
+  /* top: 42%; */
+  /* bottom: 5%; */
+  right: 3%;
+  bottom: 15%;
+  color: #f1f1f1;
+  opacity: 0.8;
+  background-color: var(--primary-theme-color);
+}
+
+.dropdown-add-author-input:hover{
+  outline: none;
+  background-color: #f1f1f1;
+}
+.dropdown-add-author-b {
+  border-bottom: solid 2px #ccc;
+  /* padding: 1rem 1rem; */
+}
+
+.add-author-spinner{
+  margin: 5% 0% 0% 35%
+}
+
+.dropdown-add-author-message{
+  color: red;
+  font-style: italic;
+  font-size: 0.7rem;
+  position: relative;
+  padding: 8px;
 }

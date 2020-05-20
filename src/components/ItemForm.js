@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import Button from '../components/Button';
 
+import AuthorService from '../services/author.service';
 import constants from '../utilities/constants';
 import images from '../assets/images';
 import '../assets/styles/itemform.css';
@@ -20,6 +21,9 @@ export default function ItemsForm(props){
   const [authors, setAuthors] = useState(a);
   const [showAuthors, setShowAuthors] = useState(false);
   const [selectedAuthor, setSelectedAuthor] = useState('');
+  const [viewAddAuthorForm, setViewAddAuthorForm] = useState(false);
+  const [confirmAuthorSubmission, setConfirmAuthorSubmission] = useState(false);
+  const [authorText, setAuthorText] = useState('');
   function handleFilteredAuthors(e){
     e.preventDefault();
     console.log('==> ', e.target.value, authors)
@@ -32,12 +36,46 @@ export default function ItemsForm(props){
   function handleShowAuthors(e){
     e.preventDefault();
     setShowAuthors(!showAuthors);
+    setViewAddAuthorForm(false);
+
   }
 
   function handleSelectedOptions(e){
     console.log('🍅', e.target.dataset.id, '🔥', e.target.dataset.name);
     setSelectedAuthor(e.target.dataset.name);
     setShowAuthors(!showAuthors);
+    setViewAddAuthorForm(false);
+
+  }
+
+  function handleAddAuthorView(e){
+    setViewAddAuthorForm(!viewAddAuthorForm);
+  }
+
+  function addAuthorHandler(e){
+    e.preventDefault();
+    setViewAddAuthorForm(false);
+    setConfirmAuthorSubmission(true);
+  }
+
+  function handleAuthorTextChange(e){
+    console.log({ error: e });
+    setAuthorText(e.target.value);
+  }
+
+  function cancelSubmission(e){
+    e.preventDefault();
+    setConfirmAuthorSubmission(false);
+    setViewAddAuthorForm(true);
+  }
+
+  async function submitAuthor(e){
+    e.preventDefault();
+    const token = localStorage.getItem('penguinAppToken');
+    const base_url = 'http://localhost:8088' || 'https://ralph-waldo-library-api.herokuapp.com';
+    console.log('😎😽---> ', authorText)
+    const result = await AuthorService.addAuthor(token, authorText, base_url);
+    console.log('😎---> ',  result)
   }
 
   return (
@@ -67,7 +105,15 @@ export default function ItemsForm(props){
           <div className={showAuthors ? "item-form-dropdown-content show" : "item-form-dropdown-content"}>
             <input className="dropdown-content-input" style={{ backgroundImage: `url(/${images.search_icon})`}} type="text" placeholder="Search.." onKeyUp={(e) => handleFilteredAuthors(e)} />
             <br/>
-            <Link to="/dashboard/authors" className="dropdown-add-author item-form-dropdown-content-items bg-white hover:bg-gray-100 text-gray-800 font-semibold">add a new author</Link>
+            <span className="dropdown-add-author-b item-form-dropdown-content-items bg-white hover:bg-gray-100 text-gray-800 font-semibold" onClick={(e)=> handleAddAuthorView(e)}>add a new author</span>{/*hover:bg-gray-100*/}
+            {viewAddAuthorForm && <span className="item-form-dropdown-content-items dropdown-add-author  bg-white  text-gray-800 font-semibold  hover:bg-white"><input className="dropdown-add-author-input focus:outline-none focus:bg-white bg-white hover:bg-white" onChange={(e)=>handleAuthorTextChange(e)} placeholder="Enter Author Name" />
+              <Button className="dropdown-add-author-button hover:opacity-100 hover:shadow px-3 py-2"  textName="add" handleSubmit={(e) => addAuthorHandler(e)} /> </span>}
+              {
+              confirmAuthorSubmission && <span className="flex flex-row justify-between item-form-dropdown-content-items">
+                <Button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 h-10 border border-gray-400 shadow" textName={"No"} handleSubmit={(e) => cancelSubmission(e)} />
+                <Button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 h-10 border hover:opacity-100 hover:shadow" handleSubmit={(e) => submitAuthor(e)} textName={"Yes"} />
+                </span>
+              }
             {authors.map(author => <span className="item-form-dropdown-content-items" onClick={(e) => handleSelectedOptions(e)} data-id={author.id} data-name={author.name} key={author.id}>{author.name}</span>)}
           </div>
         </div>
