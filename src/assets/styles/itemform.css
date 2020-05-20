@@ -1,0 +1,67 @@
+.item-form-dropbtn {
+  background-color: #2d3748;;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.item-form-dropbtn, .item-form-dropbtn:focus {
+  background-color: rgb(74, 85, 104);
+}
+
+/* The search field */
+.dropdown-content-input {
+  box-sizing: border-box;
+  background-position: 5% center;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+/* The search field when it gets focus/clicked on */
+.dropdown-content-input:focus {
+  outline: 3px solid #ddd;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.item-form-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 13rem;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.item-form-dropdown-content-items {
+  color: black;
+  padding: 16px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.item-form-dropdown-content-items:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.show {
+  display:block;
+}
+
+.dropdown-add-author{
+
+}
