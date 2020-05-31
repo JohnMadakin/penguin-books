@@ -2,23 +2,11 @@ export default  {
   states: [
     {
       id: 1,
-      name: 'borrowed'
-    },
-    {
-      id: 2,
-      name: 'lost'
-    },
-    {
-      id: 3,
-      name: 'stolen'
-    },
-    {
-      id: 4,
       name: 'in shelf'
     },
     {
-      id: 5,
-      name: 'damaged'
+      id: 4,
+      name:  'borrowed'
     },
     {
       id: 6,
@@ -54,4 +42,50 @@ export default  {
     }
 
   ],
+  conditions: [
+    {
+      id: 1,
+      name: 'New',
+
+    },
+    {
+      id: 2,
+      name: 'Used'
+    }
+  ],
+  types: [
+    {
+      id: 1,
+      name: 'books'
+    },
+    {
+      id: 2,
+      name: 'Audio CD'
+    },
+    {
+      id: 3,
+      name: 'DVD'
+    },
+     {
+      id: 4,
+      name: 'booklet'
+    },
+    {
+      id: 5,
+      name: 'Magazine'
+    }
+  ],
+  formErrorStates:  {
+    title: true,
+    isbn: true,
+    author: true,
+    categories: true,
+    itemState: false,
+    numberInStock: false,
+    type: false,
+    description: false,
+    conditions: true
+    
+  }
+
 }

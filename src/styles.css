@@ -12,13 +12,17 @@
 } */
 
 html{
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Dosis', helvetica;
 }
 
   .open-modal-animation {
   animation: blowUpModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
 
   .close-modal-animation {
     animation: blowUpModalTwo .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;    

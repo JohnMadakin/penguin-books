@@ -30,7 +30,7 @@ export default function Login(props) {
 
   async function login(){
     setLoading(true);
-    const base_url = 'http://localhost:8088' || 'https://ralph-waldo-library-api.herokuapp.com';
+    const base_url = process.env.SERVER_API;
     const results = await auth.loginService(email, password, base_url);
     setLoading(false);
     if (results.status == 'success' && results.token) {
@@ -48,6 +48,7 @@ export default function Login(props) {
     }
     if(results.status == 'error'){
       setLoading(false);
+
       const errorMessage = results.errorPayload ? results.errorPayload.message : 'Server error occured';
       if (!errorMessage) {
         Object.values(results.errorPayload).map(invalidInput => {

@@ -10,11 +10,11 @@ import { store } from '../store';
 export default function Users(props) {
   const [users, setUsers ] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [hasError, setHasError] = useState(false);
   const stores = useContext(store);
     useEffect(() => {
       async function loadUsers() {
-        const base_url = 'http://localhost:8088' || 'https://ralph-waldo-library-api.herokuapp.com';
+        const base_url = process.env.SERVER_API;
         const token = localStorage.getItem('penguinAppToken');
         const results = await userService.getAllUsers(token, base_url);
         if (results.status == 'success' && results.users.length) {
