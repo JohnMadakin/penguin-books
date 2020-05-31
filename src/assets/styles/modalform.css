@@ -1,0 +1,8 @@
+.modal-form {
+  transition: opacity 0.25s ease;
+}
+
+ .modal-active {
+  overflow-x: hidden;
+  overflow-y: visible;
+}

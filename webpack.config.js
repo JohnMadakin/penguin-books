@@ -41,7 +41,7 @@ const config = {
          ]
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
             loader: 'file-loader',
@@ -72,6 +72,9 @@ const config = {
   plugins: [
     require('tailwindcss'),
     require('autoprefixer'),
+    new webpack.DefinePlugin({
+      'process.env.SERVER_API': JSON.stringify('https://ralph-waldo-library-api.herokuapp.com')
+    })
   ]
 };
 

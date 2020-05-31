@@ -25,7 +25,6 @@ export default function Dashboard(props) {
   const currentLocation = !defaultNav ? 'home' : defaultNav;
   navs[currentLocation] = 'rounded shadow transition-all text-gray-800';
 
-  console.log('=====', defaultNav, navs)
   const [activeNavLinks, setActiveNavLinks] = useState(navs);
   const navbarLinks = 'sidenav-links flex flex-row justify-between  text-gray-600 font-semibold py-2 px-4 mt-5 w-32';
 
@@ -44,7 +43,6 @@ export default function Dashboard(props) {
   }
   const stores  = useContext(store);
 
-  console.log({ stores, match: props.match })
   //  dispatch({ type: 'load_users', payload: { loadUsers: true } })
 
 

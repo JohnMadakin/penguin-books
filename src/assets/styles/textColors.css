@@ -1,5 +1,13 @@
 /* --primary-theme-color; */
 
 :root{
-  --primary-theme-color: rgb(242, 163, 110);
+  --primary-theme-color: rgba(242, 163, 110, 1);
+  --secondary-theme-color: #97B5FC;
+  --third-theme-color: #70CDB7;
+  --black-color: #141C2C;
+  --second-random-color: #D0B3C7;
+  --third-random-color: #394152;
 }
+
+
+
