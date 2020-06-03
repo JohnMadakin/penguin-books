@@ -54,12 +54,12 @@ export default function Dashboard(props) {
             <SideNave activeNavLinks={activeNavLinks} navbarLinks={navbarLinks} pathUrl={props.match.url} handleNavClick={(e) => handleNavClick(e)}/>
           </div>
 
-          <div className="dashboard-content">
+          <div className="dashboard-content w-screen">
             <div className="dashboard-routes-container relative sm:h-full lg:h-full lg:w-full xl:w-full xl:h-full m-4">
               {
                 routes.map(singleRoute => {
                   return (
-                    <Route key={singleRoute.name} path={`${props.match.path}${singleRoute.path}`} component={singleRoute.component} />
+                    <Route key={singleRoute.name} exact={singleRoute.exact} path={`${props.match.path}${singleRoute.path}`} component={singleRoute.component} />
                   );
                 })
               }

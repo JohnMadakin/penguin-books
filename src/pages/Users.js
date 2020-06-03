@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import Spinner from '../components/SpinnerBox';
 import User from '../components/User';
@@ -8,10 +9,24 @@ import toastNotify from '../utilities/toaster';
 import { store } from '../store';
 
 export default function Users(props) {
+  const history = useHistory();
   const [users, setUsers ] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const stores = useContext(store);
+
+  async function handleItemBorrowedClick(e) {
+    e.stopPropagation();
+
+    const userId = e.currentTarget.dataset.id;
+    // console.log('-----id-----', userId)
+
+    history.push({
+      pathname: `${props.match.url}/${userId}/items`,
+      user: e.currentTarget.dataset.userfirstname
+    })
+  }
+
     useEffect(() => {
       async function loadUsers() {
         const base_url = process.env.SERVER_API;
@@ -43,9 +58,11 @@ export default function Users(props) {
 
   return (
     <div className="mx-auto" >
-      <p className="text-2xl mb-12">Library Users</p>
+      <div className="border-solid border-b border-gray-400 mx-3 mb-6 p-5">
+        <p className="text-2xl">Library Users</p>
+      </div>
       {loading && <Spinner customClass={'user-spinner mx-64 my-32'} height={'2em'} width={'3.8em'}/>}
-      {users.length > 0 && users.map(user => <User key={user.id} user={user} />)}
+      {users.length > 0 && users.map(user => <User handleItemsBorrowed={(e) => handleItemBorrowedClick(e)} key={user.id} user={user} />)}
 
     </div>
   );

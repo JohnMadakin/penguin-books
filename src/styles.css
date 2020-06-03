@@ -28,6 +28,44 @@ select {
     animation: blowUpModalTwo .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;    
   }
 
+  .item-card-edit-tooltip{
+  visibility: hidden;
+  width: 10rem;
+  background-color: #c5c5c5;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  /* border-radius: 6px; */
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 75%;
+  left: 70%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.item-card-edit-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  /* margin-left: -5px; */
+  border-width: 5px;
+  border-style: solid;
+  border-color: #c5c5c5 transparent transparent transparent;
+}
+
+.show-tooltip{
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
   @keyframes blowUpModal {
   0% {
     transform:scale(0);

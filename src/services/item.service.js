@@ -1,12 +1,13 @@
 import axios from 'axios';
 export default {
-  getAllItems: async function getItems(token, base_url) {
+  getAllItems: async function getItems(token, base_url, source) {
     try {
       const url = `${base_url}/api/v1/items`;
       const results = await axios.get(url, {
         headers: {
           authorization: token
-        }
+        },
+        cancelToken: source.token
       });
 
       if (results && results.status == 200 && results.data.success == true) {
@@ -21,13 +22,69 @@ export default {
       }
 
     } catch (error) {
-      return { status: 'error', errorPayload: error.response ? error.response.data : null };
+      if (axios.isCancel(error)) {
+        // console.log("cancelled");
+      } else {
+        return { status: 'error', errorPayload: error.response ? error.response.data : null };
+      }
     }
   },
-
-  postItem: async function postItem(payload, token, base_url){
+  getAuthorItems: async function getAuthorItems(token, url) {
     try {
-      const url = `${base_url}/api/v1/items`;
+
+      const results = await axios.get(url, {
+        headers: {
+          authorization: token
+        }
+      });
+
+      if (results && results.status == 200 && results.data.Success == true) {
+        return {
+          status: 'success',
+          items: results.data.Items,
+        }
+      }
+
+      if (results && results.status == 404 && results.data.Success == false) {
+        return {
+          status: 'success',
+          items: [],
+        }
+      }
+
+
+
+    } catch (error) {
+      return { status: 'error', errorPayload: error.response ? error.response.data : null };
+    }
+
+  },
+  getUserItems: async function getUserItems(token, url) {
+    try {
+
+      const results = await axios.get(url, {
+        headers: {
+          authorization: token
+        }
+      });
+
+      if (results && results.status == 200 && results.data.Success == true) {
+        return {
+          status: 'success',
+          items: results.data.Items,
+        }
+      }
+
+    } catch (error) {
+      return { status: 'error', errorPayload: error.response ? error.response.data : null };
+    }
+
+  },
+
+
+
+  postItem: async function postItem(payload, token, url){
+    try {
       const options = {
         headers: {
           authorization: token
@@ -46,7 +103,7 @@ export default {
       }
 
     } catch (error) {
-      console.log({error})
+
       return { status: 'error', errorPayload: error.response ? error.response.data : null };
     }
 
@@ -74,7 +131,7 @@ export default {
       }
 
     } catch (error) {
-      console.log({ error })
+
       return { status: 'error', errorPayload: error.response ? error.response.data : null };
     }
 
