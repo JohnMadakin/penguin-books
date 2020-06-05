@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
+
 import ModalForm from '../components/ModalForm';
 import ItemForm from '../components/ItemForm';
 import Spinner from '../components/SpinnerBox';
@@ -49,15 +51,18 @@ export default function Items(props) {
 
 
   useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
     async function loadItems() {
       const base_url = process.env.SERVER_API;
       //'http://localhost:8088' || 'https://ralph-waldo-library-api.herokuapp.com';
+      const author_url = `${base_url}/api/v1/authors?pageSize=all&sort=name_desc`;
 
       const token = localStorage.getItem('penguinAppToken');
       const [itemsResults, authorResults] = await Promise.all(
         [
-          itemService.getAllItems(token, base_url),
-          authorService.getAllAuthors(token, base_url),
+          itemService.getAllItems(token, base_url, source),
+          authorService.getAllAuthors(token, author_url, source),
         ]
       );
 
@@ -88,6 +93,10 @@ export default function Items(props) {
 
     loadItems();
 
+    return function cleanup(){
+      source.cancel();
+    }
+
   }, [refreshItems]);
 
   return (
@@ -98,7 +107,7 @@ export default function Items(props) {
           itemTypes={localStore.types} itemConditions={localStore.conditions} singleItem={selectedItem} editStatus={editStatus} refreshItems={() => handleRefreshItems() }/>
       </ModalForm>}
 
-      <div className="flex flex-row justify-between w-full"><p className="items-hero-text text-2xl mb-12">Library Items</p> 
+      <div className="flex flex-row justify-between w-full border-solid border-b border-gray-400 mx-3 mb-6 p-5"><p className="items-hero-text text-2xl">Library Items</p> 
         <Button className={"bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 h-10 border border-gray-400 shadow"} handleSubmit={(e) => toggleAddItemModal(e)} textName={"Add new item"} />
       </div> 
       {hasError && <h1>Network Error Occured</h1>}

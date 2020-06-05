@@ -27,14 +27,14 @@ export default {
       return { status: 'error', errorPayload: error.response ? error.response.data : null };
     }
   },
-  getAllAuthors: async function getAll(token, base_url = process.env.base_url){
+  getAllAuthors: async function getAll(token, url, source){
     try {
-      const url = `${base_url}/api/v1/authors?pageSize=all&sort=name_desc`;
 
       const results = await axios.get(url, {
         headers: {
           authorization: token
-        }
+        },
+        cancelToken: source.token
       });
 
       if (results && results.status == 200 && results.data.success == true) {
@@ -45,7 +45,11 @@ export default {
       }
 
     } catch (error) {
-      return { status: 'error', errorPayload: error.response ? error.response.data : null };
+      if (axios.isCancel(error)) {
+        // console.log("cancelled");
+      } else {
+        return { status: 'error', errorPayload: error.response ? error.response.data : null };
+      }
     }
 
   },
