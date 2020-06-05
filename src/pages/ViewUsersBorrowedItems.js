@@ -83,9 +83,11 @@ export default function ViewUsersBorrowedItems(props) {
       <div className="mx-auto w-full flex flex-wrap flex-row" >
         {hasError && <h1>Network Error Occured</h1>}
         {loading && <Spinner customClass={'item-spinner mx-64 my-32'} height={'2em'} width={'3.8em'} />}
-        {items.length > 0 && items.map((item, index) => <Item key={`${item.itemId}-${item.isbn}`} item={item} containerClassName={''} userView={true} authorView={true} index={index} />) }
-        {(items.length === 0 && !loading) && <div className="w-full flex justify-center items-center h-64 relative" ><div className="w-64 h-64" style={{ backgroundImage: `url(/${empty_data})`, backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}></div><h1 className="text-2xl">User does not have any library items 😎</h1>
-          </div>}
+        {
+          items.length > 0 && items.map((item, index) => <Item key={`${item.itemId}-${item.isbn}`} item={item} containerClassName={''} userView={true} authorView={true} index={index} />) }
+        {(items.length === 0 && !loading && !hasError) && <div className="w-full flex justify-center items-center h-64 relative" ><div className="w-64 h-64" style={{ backgroundImage: `url(/${empty_data})`, backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}></div>
+        <h1 className="text-2xl">User does not have any library items 😎</h1>
+      </div>}
 
       </div>
     </div>
