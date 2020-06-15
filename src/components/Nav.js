@@ -33,11 +33,9 @@ export default function Nav() {
 
   function handleCloseModal(event){
     event.stopPropagation();
-    // setShowModal(false);
-  }
-
-  function dontPropagate(e){
-    event.stopPropagation(e);
+    if (event.target.dataset.close == 'close'){
+      setShowModal(false);
+    }
   }
 
   function logout(){
@@ -55,13 +53,13 @@ export default function Nav() {
     <div className="navbar lg:p-6 shadow">
       <nav className="flex flex-row justify-between lg:px-12">
         <div className="flex flex-row">
-          <span className="lg:mr-12"><Link to="/"><img alt="logo" src={'/static/media/penguin_logo2.jpg'} className="h-8 w-auto sm:h-10" /></Link></span>
+          <span className="navbar-logo lg:mr-12"><Link to="/"><img alt="logo" src={'/static/media/penguin_logo2.jpg'} className="h-8 w-auto sm:h-10" /> <span>Penguin Library Management System</span></Link></span>
           <ul className="flex flex-row">
             <li className="navbar-links py-2 px-4">
-              <Link to="/authors">Search Authors</Link>
+              <Link to="#">Search Authors</Link>
             </li>
             <li className="navbar-links py-2 px-4">
-              <Link to="/best-sellers">Best Sellers</Link>
+              <Link to="#">Best Sellers</Link>
             </li>
             <li className="navbar-links py-2 px-4">
               <a className="navbar-links-login" onClick={user.isAuthenticated ? () => logout() : () => handleModal()}>{user.isAuthenticated ? 'Logout' : 'Admin Login'}</a>
@@ -77,7 +75,7 @@ export default function Nav() {
         showModal && 
         // <div className="xl:w-1/3 sm:w-auto md:w-full lg:w-32 h-64 z-10">
         <Modal animationClass={showModal ? "open-modal-animation" : "close-modal-animation"} handleCloseModal={(e) => handleCloseModal(e)}>
-          <Login handleCloseModal ={(e) => dontPropagate(e)}></Login>
+          <Login handleCloseModal={(e) => handleCloseModal(e)}></Login>
           </Modal>
         // </div>
       }

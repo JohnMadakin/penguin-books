@@ -68,7 +68,7 @@ export default function Authors(props) {
       </svg><span>Authors</span></div>
       <div className="mx-auto w-full flex flex-wrap flex-row" >
         {hasError && <h1>Network Error Occured</h1>}
-        {loading && <Spinner customClass={'item-spinner mx-64 my-32'} height={'2em'} width={'3.8em'} />}
+        {loading && <Spinner customClass={'item-spinner'} height={'2em'} width={'3.8em'} />}
 
         {
           authors.map(author => <div className="authors-list" key={author.id} data-id={author.id} data-authorname={author.name} onClick={(e) => handleAuthorClick(e)}><Author  author={author} /></div>)

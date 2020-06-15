@@ -111,9 +111,9 @@ export default function Items(props) {
         <Button className={"bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 h-10 border border-gray-400 shadow"} handleSubmit={(e) => toggleAddItemModal(e)} textName={"Add new item"} />
       </div> 
       {hasError && <h1>Network Error Occured</h1>}
-      {loading && <Spinner customClass={'item-spinner mx-64 my-32'} height={'2em'} width={'3.8em'} />}
+      {loading && <Spinner customClass={'item-spinner'} height={'2em'} width={'3.8em'} />}
       <div className="flex flex-row flex-wrap justify-start content-start w-auto h-full">
-        {items.length > 0 && items.map((item, index) => <Item key={`${item.itemId}-${item.isbn}`} item={item} containerClassName={''} index={index} editItem={(e) => editItem(e)} />)}
+        {items.length > 0 && items.map((item, index) => <Item key={`${item.itemId}-${item.isbn}`} item={item} containerClassName={''} index={index} itemView={true} editItem={(e) => editItem(e)} />)}
       </div>
 
     </div> 

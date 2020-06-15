@@ -5,11 +5,11 @@ import images from '../assets/images';
 
 
 export default function Item(props) {
-  const { containerClassName, item, editItem, index, authorView } = props;
+  const { containerClassName, item, editItem, index, authorView, userView, itemView } = props;
   const [flipCard, setFlipCard] = useState(false);
   const [activeRow, setActiveRow] = useState(false);
   const [tooltipEdit, setTooltipEdit ] = useState(false);
-  const { title, isbn, totalNumber, itemType, itemCategory, description, itemCode, author, dateAdded, numberInStock } = item;
+  const { title, isbn, totalNumber, itemType, itemCategory, description, itemUniqueCode, author, dateAdded, numberInStock, itemStateName } = item;
 
   const contentStyle = 'item-card-content  w-full h-full';
   const addressStyle = 'item-list-address-content p-5 h-32';
@@ -68,8 +68,11 @@ export default function Item(props) {
               </div>
 
               <div className="item-card-description">
-                {/* <p>{dateAdded}</p> */ authorView && 
+                {/* <p>{dateAdded}</p> */(authorView || itemView) && 
                 <p> {description}</p>
+                }
+                {/* <p>{dateAdded}</p> */ userView &&
+                  <p className="item-card-description-state"> {itemStateName}</p>
                 }
 
               </div>

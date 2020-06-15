@@ -80,7 +80,7 @@ export default function ViewAuthorsItem(props) {
       </div>
       <div className="mx-auto w-full flex flex-wrap flex-row" >
         {hasError && <h1>Network Error Occured</h1>}
-        {loading && <Spinner customClass={'item-spinner mx-64 my-32'} height={'2em'} width={'3.8em'} />}
+        {loading && <Spinner customClass={'item-spinner'} height={'2em'} width={'3.8em'} />}
         {items.length > 0 && items.map((item, index) => <Item key={`${item.itemId}-${item.isbn}`} item={item} containerClassName={''} authorView={true} index={index} />) }
         {(items.length === 0 && !loading) && <div className="w-full flex justify-center items-center h-64 relative" ><div className="w-64 h-64" style={{ backgroundImage: `url(/${empty_data})`, backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}></div><h1 className="text-2xl">No Items found for this Author 😓</h1>
           </div>}

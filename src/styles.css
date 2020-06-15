@@ -64,7 +64,19 @@ select {
   opacity: 1;
 }
 
-
+svg{
+  display: inline-block;
+}
+.navbar-logo{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+.navbar-logo img{
+  display: inline-block;
+}
 
   @keyframes blowUpModal {
   0% {
