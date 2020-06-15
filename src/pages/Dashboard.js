@@ -55,7 +55,9 @@ export default function Dashboard(props) {
           </div>
 
           <div className="dashboard-content w-screen">
+           
             <div className="dashboard-routes-container relative sm:h-full lg:h-full lg:w-full xl:w-full xl:h-full m-4">
+              {activeNavLinks.home && <h1 className="text-2xl text-center">Welcome to the Penguin Library Management System</h1>}
               {
                 routes.map(singleRoute => {
                   return (

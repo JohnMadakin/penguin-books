@@ -249,6 +249,19 @@
   overflow-y: auto;
 }
 
+.item-card-description-state{
+  font-size: 1rem;
+  /* position: relative;
+  text-align: center; */
+  /* margin: 0 auto; */
+  padding: 5px 10px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* .item-card-back-inner{
+  justify-items: center;
+} */
+
 /* .item-card-totalnumber {
   border-radius: 50%;
   background-color: var(--primary-theme-color);

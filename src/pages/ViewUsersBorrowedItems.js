@@ -26,6 +26,14 @@ export default function ViewUsersBorrowedItems(props) {
   function handleBackClick(e){
     history.push('/dashboard/users');
   }
+
+  function getColor(){
+    return {
+      1: 'border-solid border-4 border-red-400',
+      4: 'border-solid border-4 border-green-300'
+    }
+  }
+
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
@@ -82,11 +90,11 @@ export default function ViewUsersBorrowedItems(props) {
       </div>
       <div className="mx-auto w-full flex flex-wrap flex-row" >
         {hasError && <h1>Network Error Occured</h1>}
-        {loading && <Spinner customClass={'item-spinner mx-64 my-32'} height={'2em'} width={'3.8em'} />}
+        {loading && <Spinner customClass={'item-spinner'} height={'2em'} width={'3.8em'} />}
         {
-          items.length > 0 && items.map((item, index) => <Item key={`${item.itemId}-${item.isbn}`} item={item} containerClassName={''} userView={true} authorView={true} index={index} />) }
+          items.length > 0 && items.map((item, index) => <Item key={`${item.itemId}-${item.isbn}`} item={item} containerClassName={getColor()[item.itemState]} userView={true} authorView={true} index={index} />) }
         {(items.length === 0 && !loading && !hasError) && <div className="w-full flex justify-center items-center h-64 relative" ><div className="w-64 h-64" style={{ backgroundImage: `url(/${empty_data})`, backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'contain' }}></div>
-        <h1 className="text-2xl">User does not have any library items 😎</h1>
+        <h1 className="text-2xl">User has no history of borrowing library items 😎</h1>
       </div>}
 
       </div>

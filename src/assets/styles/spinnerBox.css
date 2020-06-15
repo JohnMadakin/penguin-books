@@ -3,6 +3,7 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  margin: 100px auto;
 }
 
 .spinner-rec {
@@ -40,4 +41,5 @@
 .login-spinner{
   margin-left: 15%;
   margin-top: 2%;
+  /* margin: auto auto; */
 }
